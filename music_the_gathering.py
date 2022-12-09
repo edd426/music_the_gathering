@@ -1,35 +1,34 @@
-import argparse
-from player import Player
-from deck import Deck
+import json
+
+from card_library import CardLibrary
 from game import Game
-from card import Card
+from player import Player
 
+def main():
+    # create a card library
+    library = CardLibrary()
 
-def create_deck():
-    # define the cards in the deck
-    cards = [
-        Card("Lightning Bolt", "Instant", ["Deal 3 damage to target creature or player"], 1),
-        Card("Goblin Guide", "Creature", ["Whenever Goblin Guide attacks, defending player reveals the top card of their library. If it's a land card, that player puts it into their hand"], 1),
-        Card("Blood Moon", "Enchantment", ["Nonbasic lands are Mountains"], 2),
-    ]
+    # import cards from a JSON file
+    library.import_cards("./card_storage.json")
 
-    # create the player's deck
-    deck = Deck(cards)
-    return deck
+    # create a deck for each player
+    player_1_deck = library.create_deck(["Lightning Bolt", "Goblin Guide", "Blood Moon", "Tarmogoyf", "Dark Confidant", "Sakura-Tribe Elder"])
+    player_2_deck = library.create_deck(["Lightning Bolt", "Goblin Guide", "Blood Moon", "Tarmogoyf", "Dark Confidant", "Sakura-Tribe Elder"])
 
+    # create players
+    player_1 = Player("Player 1", player_1_deck, 20)
+    player_2 = Player("Player 2", player_2_deck, 20)
 
-# define the command line arguments and options
-parser = argparse.ArgumentParser()
-parser.add_argument("--player1", help="name of player 1", default="Player 1")
-parser.add_argument("--player2", help="name of player 2", default="Player 2")
+    # create the game
+    game = Game([player_1, player_2])
 
-# parse the command line arguments
-args = parser.parse_args()
+    # run the game
+    while not game.is_over():
+        game.play_turn()
 
-# create the players
-player1 = Player(args.player1, create_deck(), life=20)
-player2 = Player(args.player2, create_deck(), life=20)
+    # determine the winner
+    winner = game.get_winner()
+    print(f"{winner} wins!")
 
-# create and start the game
-game = Game([player1, player2])
-game.play()
+if __name__ == "__main__":
+    main()

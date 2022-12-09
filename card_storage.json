@@ -1,0 +1,24 @@
+[    {
+        "name": "Lightning Bolt",
+        "card_type": "Instant",
+        "abilities": ["Deal 3 damage to target creature or player"],
+        "mana_cost": 1
+    },
+    {
+        "name": "Goblin Guide",
+        "card_type": "Creature",
+        "abilities": ["Whenever Goblin Guide attacks, defending player reveals the top card of their library. If it's a land card, that player puts it into their hand"],
+        "mana_cost": 1,
+        "attack": 2,
+        "defense": 2
+    },
+    {
+        "name": "Blood Moon",
+        "card_type": "Enchantment",
+        "abilities": ["Nonbasic lands are Mountains"],
+        "mana_cost": 2
+    }
+]
+
+
+
