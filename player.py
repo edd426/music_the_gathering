@@ -1,10 +1,12 @@
 class Player:
-    def __init__(self, name, deck, life):
+    def __init__(self, name, deck, life, attack=0, defense=0):
         self.name = name
         self.deck = deck
         self.life = life
         self.hand = []
         self.mana = 0
+        self.attack = attack
+        self.defense = defense
 
     def __str__(self):
         return self.name
@@ -27,3 +29,7 @@ class Player:
     def is_dead(self):
         # return True if the player's life total is 0 or less
         return self.life <= 0
+
+    def add_mana(self):
+        # add 1 mana to the player's mana pool
+        self.mana += 1

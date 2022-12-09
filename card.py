@@ -1,9 +1,11 @@
 class Card:
-    def __init__(self, name, card_type, abilities, mana_cost):
+    def __init__(self, name, card_type, abilities, mana_cost, attack=0, defense=0):
         self.name = name
         self.card_type = card_type
         self.abilities = abilities
         self.mana_cost = mana_cost
+        self.attack = attack
+        self.defense = defense
 
     def __str__(self):
         return self.name
