@@ -1,22 +1,50 @@
 [    {
-        "name": "Lightning Bolt",
-        "card_type": "Instant",
-        "abilities": ["Deal 3 damage to target creature or player"],
-        "mana_cost": 1
+    "name": "Goblin Guide",
+    "card_type": "Creature",
+    "abilities": ["Haste"],
+    "mana_cost": 1,
+    "attack": 2,
+    "defense": 2
     },
     {
-        "name": "Goblin Guide",
-        "card_type": "Creature",
-        "abilities": ["Whenever Goblin Guide attacks, defending player reveals the top card of their library. If it's a land card, that player puts it into their hand"],
-        "mana_cost": 1,
-        "attack": 2,
-        "defense": 2
+    "name": "Tarmogoyf",
+    "card_type": "Creature",
+    "abilities": ["Trample", "Haste"],
+    "mana_cost": 2,
+    "attack": 3,
+    "defense": 3
     },
     {
-        "name": "Blood Moon",
-        "card_type": "Enchantment",
-        "abilities": ["Nonbasic lands are Mountains"],
-        "mana_cost": 2
+    "name": "Dark Confidant",
+    "card_type": "Creature",
+    "abilities": ["Lifelink"],
+    "mana_cost": 3,
+    "attack": 2,
+    "defense": 2
+    },
+    {
+    "name": "Sakura-Tribe Elder",
+    "card_type": "Creature",
+    "abilities": ["Reach"],
+    "mana_cost": 3,
+    "attack": 1,
+    "defense": 1
+    },
+    {
+    "name": "Birds of Paradise",
+    "card_type": "Creature",
+    "abilities": ["Flying"],
+    "mana_cost": 3,
+    "attack": 0,
+    "defense": 1
+    },
+    {
+    "name": "Eternal Witness",
+    "card_type": "Creature",
+    "abilities": ["Flash"],
+    "mana_cost": 3,
+    "attack": 2,
+    "defense": 1
     }
 ]
 

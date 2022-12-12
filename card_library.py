@@ -1,5 +1,6 @@
 import json
 from card import Card
+from creature import Creature
 from deck import Deck
 
 class CardLibrary:
@@ -11,15 +12,17 @@ class CardLibrary:
         with open(filename) as f:
             data = json.load(f)
         for card_data in data:
-            card = Card(
-                card_data["name"],
-                card_data["card_type"],
-                card_data["abilities"],
-                card_data["mana_cost"],
-                attack=card_data.get("attack", 0),
-                defense=card_data.get("defense", 0),
-            )
-            self.add_card(card)
+            # only add cards with a card_type of "Creature" to the library
+            if card_data["card_type"] == "Creature":
+                card = Creature(
+                    name=card_data["name"],
+                    card_type=card_data["card_type"],
+                    abilities=card_data["abilities"],
+                    mana_cost=card_data["mana_cost"],
+                    attack=card_data.get("attack", 0),
+                    defense=card_data.get("defense", 0),
+                )
+                self.add_card(card)
 
     def add_card(self, card):
         # add a card to the library
