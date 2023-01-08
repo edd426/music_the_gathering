@@ -45,5 +45,5 @@ class CardLibrary:
 
     def create_deck(self, names):
         # create a deck from the cards with the given names
-        cards = [c for c in self.cards if c.name in names]
+        cards = [c.copy() for c in self.cards if c.name in names]
         return Deck(cards)

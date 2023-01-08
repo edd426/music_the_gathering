@@ -29,18 +29,33 @@ class Game:
     def choose_target(self, targets):
         return random.choice(targets)
 
-    def choose_card(self, player):
-        print("Your hand:")
-        for i, card in enumerate(player.hand):
-            print(f"{i + 1}. {card}")
-        choice = input("Enter the number of the card you want to play: ")
-        try:
-            # convert the user's input to an index in the player's hand
-            card_index = int(choice) - 1
-            return player.hand[card_index]
-        except (ValueError, IndexError):
-            print("Invalid choice. Please try again.")
-            return self.choose_card(player)
+    def play_cards(self, player):
+        while True:
+            print("Your hand:")
+            for i, card in enumerate(player.hand):
+                print(f"{i + 1}.")
+                card.print_stats()
+                print()
+            choice = input(
+                "Enter the number of the card you want to play, "
+                + "or 0 to not play any more cards: "
+            )
+            try:
+                if choice == "0":  # Don't play any more cards
+                    return None
+                # convert the user's input to an index in the player's hand
+                card_index = int(choice) - 1
+                chosen_card = player.hand[card_index]
+                if chosen_card.can_play(player.mana_available):
+                    player.play(chosen_card)
+                    print(f"{player} plays {chosen_card}.")
+                else:
+                    # If the player doesn't have enough mana to play this card,
+                    # stop asking for card choices
+                    print("Not a playable card. Moving to attack phase.")
+                    return None
+            except (ValueError, IndexError):
+                print("Invalid choice. Please try again.")
 
     def play(self):
         # main game loop
@@ -56,12 +71,8 @@ class Game:
             drawn_card = player.draw()
             print(f"{player} draws {drawn_card}.")
 
-            chosen_card = self.choose_card(player)
-            # check if the player can play the card
-            if player.mana_available >= chosen_card.mana_cost:
-                player.play(chosen_card)
-                player.mana_available -= chosen_card.mana_cost
-                print(f"{player} plays {chosen_card}.")
+            # have the player summon any number of cards
+            self.play_cards(player)
 
             for creature in player.get_untapped_creatures():
                 targets = self.get_attackable_targets(player)

@@ -38,12 +38,11 @@ class Card(ABC):
         # add the card's mana cost to the box
         box += "| Mana cost: " + str(self.mana_cost) + " |\n"
 
-        # add the card's other stats to the box
-        if self.card_type == "Creature":
-            box += "| Attack: " + str(self.attack_value) + " |\n"
-            box += "| Defense: " + str(self.defense_value) + " |\n"
-
         # add the bottom of the box
         box += "+" + "-" * (len(self.name) + 2)
         print(box)
+
+    @abstractmethod
+    def copy(self):
+        pass
 

@@ -12,6 +12,9 @@ class Creature(Card):
         self.player = None
         self.card_type = card_type
 
+    def can_play(self, mana_available):
+        return super().can_play(mana_available)
+
     def play(self, player, target):
         # summon the creature
         player.creatures.append(self)
@@ -33,6 +36,9 @@ class Creature(Card):
             self.player.creatures.remove(self)
             self.player.graveyard.append(self)
             print(f"{self} from {self.player} has died.")
+        else:
+            print(f"{self} from {self.player} has {self.defense_value} defense"
+                  + " remaining.")
 
     def print_stats(self):
         # create the top of the box
@@ -59,5 +65,19 @@ class Creature(Card):
         # add the bottom of the box
         box += "+" + "-" * (len(self.name) + 2)
         print(box)
+
+    def copy(self):
+        # create a new Card object with the same attributes as the original
+        new_creature = Creature(
+            name=self.name,
+            abilities=self.abilities,
+            mana_cost=self.mana_cost,
+            card_type=self.card_type,
+            attack=self.attack_value,
+            defense=self.defense_value
+        )
+        # if the original card is a creature, also copy its attack and defense
+        # values
+        return new_creature
 
 
