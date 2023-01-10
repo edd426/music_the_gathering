@@ -1,4 +1,4 @@
-from abc import ABC
+from abc import ABC, abstractmethod
 
 
 class Player(ABC):
@@ -25,14 +25,18 @@ class Player(ABC):
 
     @abstractmethod
     def draw(self):
+
         if self.deck.remaining() == 0:
             # increment the number of empty draws
             self.empty_draws += 1
             # deal damage to the player based on the number of empty draws
+            print(f"{self} takes {self.empty_draws} damage"
+                  + " due to empty draws.")
             self.take_damage(self.empty_draws)
             return None
         # draw a card from the player's deck
         card = self.deck.draw()
+        print(f"{self} draws {card}.")
         self.hand.append(card)
         return card
 

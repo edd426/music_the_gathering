@@ -2,7 +2,8 @@ import json
 
 from card_library import CardLibrary
 from game import Game
-from player import Player
+from ai_player import AIPlayer
+from human_player import HumanPlayer
 
 
 def main():
@@ -23,8 +24,8 @@ def main():
          "Eternal Witness"])
 
     # create players
-    player_1 = Player("Player 1", player_1_deck, 20)
-    player_2 = Player("Player 2", player_2_deck, 20)
+    player_1 = AIPlayer("Player 1", player_1_deck, 20)
+    player_2 = AIPlayer("Player 2", player_2_deck, 20)
 
     # create the game
     game = Game([player_1, player_2])
@@ -33,7 +34,7 @@ def main():
     game.play()
 
     # determine the winner
-    winner = game.end_game()
+    winner = game.get_victorious_player()
     print(f"{winner} wins!")
 
 

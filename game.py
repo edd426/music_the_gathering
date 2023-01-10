@@ -1,4 +1,6 @@
 import random
+from human_player import HumanPlayer
+from ai_player import AIPlayer
 
 
 class Game:
@@ -15,9 +17,16 @@ class Game:
     def end_game(self):
         # determine the winner of the game
         alive = [p for p in self.players if not p.is_dead()]
-        if len(alive) == 1:
-            return alive[0]
-        return None
+        if len(alive) <= 1:
+            return True
+        return False
+
+    def get_victorious_player(self):
+        living_players = [p for p in self.players if not p.is_dead()]
+        if living_players and len(living_players) <= 1:
+            return living_players[0]
+        else:
+            return None
 
     def get_attackable_targets(self, attacking_player):
         other_players = [p for p in self.players
@@ -64,16 +73,21 @@ class Game:
 
             # generate mana
             player.generate_mana()
-            print(f"\n{player} begins their turn. "
-                  + f"They have {player.mana_available} mana.")
+            print(f"\n*** {player} begins their turn. "
+                  + f"They have {player.mana_available} mana. ***")
 
             # draw a card
             drawn_card = player.draw()
-            print(f"{player} draws {drawn_card}.")
 
             # have the player summon any number of cards
-            self.play_cards(player)
+            if isinstance(player, HumanPlayer):
+                self.play_cards(player)
+            elif isinstance(player, AIPlayer):
+                player.play_cards()
+            else:
+                raise ValueError("Invalid player type")
 
+            print(f"\n{player} attack phase begins.")
             for creature in player.get_untapped_creatures():
                 targets = self.get_attackable_targets(player)
                 target = self.choose_target(targets)
@@ -82,9 +96,14 @@ class Game:
 
             player.end_turn()
             # check if the game has ended
-            winner = self.end_game()
-            if winner is not None:
-                print(f"{winner} wins the game!")
+            game_over = self.end_game()
+            if game_over:
+                winner = self.get_victorious_player()
+                if winner:
+                    print(f"\n{winner} wins the game!")
+                else:
+                    print("\nGame is a draw, no winner.")
+
                 break
 
             self.next_turn()
