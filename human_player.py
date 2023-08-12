@@ -4,7 +4,7 @@ from player import Player
 class HumanPlayer(Player):
 
     def __init__(self, name, deck, life, attack=0, defense=0):
-        super().__init__(self, name, deck, life, attack, defense)
+        super().__init__(name, deck, life, attack, defense)
 
     def __str__(self):
         return super().__str__()

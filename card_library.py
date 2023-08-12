@@ -3,6 +3,7 @@ from card import Card
 from creature import Creature
 from deck import Deck
 
+
 class CardLibrary:
     def __init__(self):
         self.cards = []

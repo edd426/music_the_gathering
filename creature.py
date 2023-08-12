@@ -1,4 +1,5 @@
 from card import Card
+from player import Player
 
 
 class Creature(Card):
@@ -11,6 +12,35 @@ class Creature(Card):
         self.tapped = False
         self.player = None
         self.card_type = card_type
+        self.flying = "Flying" in abilities
+        self.reach = "Reach" in abilities
+
+    def can_attack(self, target):
+        # check if the creature can attack the target
+        if not (isinstance(target, Creature) or isinstance(target, Player)):
+            raise ValueError("Target must be a Creature or Player")
+        if self.tapped:
+            return False
+
+        if isinstance(target, Creature):
+            if target.tapped:
+                return False
+
+            if self.flying and not (target.flying or target.reach):
+                return False
+
+        return True
+
+    def can_block(self, attacker):
+        # check if this creature can block a given attacker
+        if isinstance(attacker, Creature):
+            # if the attacker is a creature and has flying or reach,
+            # this creature can block it
+            if attacker.flying:
+                return self.flying or self.reach
+            return True
+        else:  # the attacker is a player
+            return False
 
     def can_play(self, mana_available):
         return super().can_play(mana_available)

@@ -1,50 +1,90 @@
 [    {
-    "name": "Goblin Guide",
-    "card_type": "Creature",
-    "abilities": ["Haste"],
-    "mana_cost": 1,
-    "attack": 2,
-    "defense": 2
+        "name": "Goblin Guide",
+        "card_type": "Creature",
+        "abilities": ["Haste"],
+        "mana_cost": 1,
+        "attack": 2,
+        "defense": 2
     },
     {
-    "name": "Tarmogoyf",
-    "card_type": "Creature",
-    "abilities": ["Trample", "Haste"],
-    "mana_cost": 2,
-    "attack": 3,
-    "defense": 3
+        "name": "Tarmogoyf",
+        "card_type": "Creature",
+        "abilities": ["Trample", "Haste"],
+        "mana_cost": 2,
+        "attack": 3,
+        "defense": 3
     },
     {
-    "name": "Dark Confidant",
-    "card_type": "Creature",
-    "abilities": ["Lifelink"],
-    "mana_cost": 3,
-    "attack": 2,
-    "defense": 2
+        "name": "Dark Confidant",
+        "card_type": "Creature",
+        "abilities": ["Lifelink"],
+        "mana_cost": 3,
+        "attack": 2,
+        "defense": 2
     },
     {
-    "name": "Sakura-Tribe Elder",
-    "card_type": "Creature",
-    "abilities": ["Reach"],
-    "mana_cost": 3,
-    "attack": 1,
-    "defense": 1
+        "name": "Sakura-Tribe Elder",
+        "card_type": "Creature",
+        "abilities": ["Reach"],
+        "mana_cost": 3,
+        "attack": 1,
+        "defense": 1
     },
     {
-    "name": "Birds of Paradise",
-    "card_type": "Creature",
-    "abilities": ["Flying"],
-    "mana_cost": 3,
-    "attack": 0,
-    "defense": 1
+        "name": "Birds of Paradise",
+        "card_type": "Creature",
+        "abilities": ["Flying"],
+        "mana_cost": 2,
+        "attack": 2,
+        "defense": 2
     },
     {
-    "name": "Eternal Witness",
-    "card_type": "Creature",
-    "abilities": ["Flash"],
-    "mana_cost": 3,
-    "attack": 2,
-    "defense": 1
+        "name": "Eternal Witness",
+        "card_type": "Creature",
+        "abilities": ["Flash"],
+        "mana_cost": 3,
+        "attack": 2,
+        "defense": 1
+    },
+    {
+        "name": "Pop Pegasus",
+        "card_type": "Creature",
+        "abilities": ["Flying"],
+        "mana_cost": 4,
+        "attack": 4,
+        "defense": 4
+    },
+    {
+        "name": "Rap Raven",
+        "card_type": "Creature",
+        "abilities": ["Flying", "Fear"],
+        "mana_cost": 4,
+        "attack": 3,
+        "defense": 2
+    },
+    {
+        "name": "Jazz Sparrow",
+        "card_type": "Creature",
+        "abilities": ["Flying"],
+        "mana_cost": 1,
+        "attack": 1,
+        "defense": 1
+    },
+    {
+        "name": "Rock Drake",
+        "card_type": "Creature",
+        "abilities": ["Flying", "Haste"],
+        "mana_cost": 3,
+        "attack": 2,
+        "defense": 1
+    },
+    {
+        "name": "Harmony Angel",
+        "card_type": "Creature",
+        "abilities": ["Flying", "Lifelink"],
+        "mana_cost": 5,
+        "attack": 3,
+        "defense": 3
     }
 ]
 

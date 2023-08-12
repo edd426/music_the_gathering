@@ -17,19 +17,33 @@ class AIPlayer(Player):
         super().play(card, target)
 
     def play_cards(self):
-        while len(self.hand) > 0 and self.mana_available > 0:
+        available_hand = self.hand.copy()
+        while len(available_hand) > 0 and self.mana_available > 0:
             # choose a random card from the hand to play
-            card_index = random.randint(0, len(self.hand) - 1)
-            chosen_card = self.hand[card_index]
+            card_index = random.randint(0, len(available_hand) - 1)
+            chosen_card = available_hand[card_index]
 
             # check if the card can be played
             if chosen_card.can_play(self.mana_available):
                 # play the card
                 self.play(chosen_card)
+                available_hand.remove(chosen_card)
                 print(f"{self} plays {chosen_card}.")
             else:
-                print(f"Not enough mana to play {chosen_card}. Skipping turn.")
-                break
+                print(f"Not enough mana to play {chosen_card}.")
+                available_hand.remove(chosen_card)
+
+    def choose_location(self, game_board):
+        # Choose a random location to place a creature on the game board.
+        # Get a list of available lanes and rows
+        lanes = range(game_board.num_lanes)
+        rows = range(game_board.num_rows)
+        available_locations = [
+            (lane, row) for lane in lanes for row in rows
+            if not game_board.board[self.name][lane][row]]
+        # Choose a random location from the available ones
+        chosen_location = random.choice(available_locations)
+        return chosen_location
 
     def take_damage(self, amount):
         super().take_damage(amount)
